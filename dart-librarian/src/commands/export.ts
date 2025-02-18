@@ -118,7 +118,14 @@ async function addExportStatement(sourceFile: vscode.Uri, targetFile: ExportFile
     const lines = document.getText().split('\n');
 
     // Prevent duplicate export.
-    if (lines.some(line => line.trim() === exportStatement)) {
+    const existingLineIndex = lines.findIndex(line => line.trim() === exportStatement);
+    if (existingLineIndex !== -1) {
+        // Show the file and highlight the existing export
+        const editor = await vscode.window.showTextDocument(document);
+        const lineRange = document.lineAt(existingLineIndex).range;
+        editor.selection = new vscode.Selection(lineRange.start, lineRange.end);
+        editor.revealRange(lineRange);
+
         vscode.window.showWarningMessage('This export statement already exists.');
         return;
     }
