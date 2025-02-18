@@ -1,5 +1,9 @@
 # Change Log
 
+## 1.0.1
+
+Modify display name and tags.
+
 ## 1.0.0
 
 - Initial release 🎉

@@ -2,7 +2,7 @@
   "name": "dart-librarian",
   "displayName": "Dart Librarian",
   "description": "Export dart files to libraries at ease!",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "publisher": "nivisi",
   "repository": {
     "type": "git",

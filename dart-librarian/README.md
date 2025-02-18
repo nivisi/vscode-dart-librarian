@@ -1,6 +1,6 @@
-# dart-librarian
+# Dart Librarian 1.0.1
 
-**dart-librarian** is a VS Code extension that simplifies exporting files in `library` files.
+**dart-librarian** is a VS Code extension that simplifies exporting files to `library` files.
 
 ## Features
 
