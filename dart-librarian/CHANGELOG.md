@@ -1,9 +1,7 @@
 # Change Log
 
-All notable changes to the "dart-librarian" extension will be documented in this file.
+## 1.0.0
 
-Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
-
-## [Unreleased]
-
-- Initial release
+- Initial release 🎉
+  - Export: Allows to export a `dart` file to another `dart` file from the `lib` directory.
+  - Remove Export: Allows to remove an export from a `dart` file, if it is present.
