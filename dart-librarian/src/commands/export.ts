@@ -200,30 +200,18 @@ function sortExportStatements(exportsArr: string[]): string[] {
         const fileNameA = path.basename(fileAFull);
         const fileNameB = path.basename(fileBFull);
 
-        // Determine if the file is a freezed file.
-        const isFreezedA = fileNameA.endsWith(".freezed.dart");
-        const isFreezedB = fileNameB.endsWith(".freezed.dart");
+        // Extract the base name by removing any additional extensions.
+        const baseA = fileNameA.split('.').slice(0, -1).join('.');
+        const baseB = fileNameB.split('.').slice(0, -1).join('.');
 
-        // Remove the extension: if freezed, remove ".freezed.dart", otherwise remove ".dart"
-        const baseA = isFreezedA ? fileNameA.slice(0, -".freezed.dart".length)
-            : fileNameA.slice(0, -".dart".length);
-        const baseB = isFreezedB ? fileNameB.slice(0, -".freezed.dart".length)
-            : fileNameB.slice(0, -".dart".length);
-
-        // If the base names are identical, non-freezed should come first.
+        // If the base names are identical, the file with fewer extensions should come first.
         if (baseA === baseB) {
-            if (isFreezedA !== isFreezedB) {
-                return isFreezedA ? 1 : -1;
-            }
-            return 0;
+            return fileNameA.split('.').length - fileNameB.split('.').length;
         }
 
         // If one base is a prefix of the other (e.g. "abc" vs "abc_abc"),
         // the shorter (non‑underscored) file should come first.
         if (baseA.startsWith(baseB) || baseB.startsWith(baseA)) {
-            if (isFreezedA !== isFreezedB) {
-                return isFreezedA ? 1 : -1;
-            }
             return baseA.length - baseB.length;
         }
 
