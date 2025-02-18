@@ -1,0 +1,87 @@
+{
+  "name": "dart-librarian",
+  "displayName": "dart-librarian",
+  "description": "Export dart files to libraries at ease!",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:dart"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "dart-librarian.exportIn",
+        "title": "Export in...",
+        "category": "Dart Librarian"
+      },
+      {
+        "command": "dart-librarian.removeExport",
+        "title": "Remove Export",
+        "category": "Dart Librarian"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
+          "command": "dart-librarian.exportIn",
+          "group": "navigation"
+        },
+        {
+          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
+          "command": "dart-librarian.removeExport",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
+          "command": "dart-librarian.exportIn",
+          "group": "1_modification"
+        },
+        {
+          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
+          "command": "dart-librarian.removeExport",
+          "group": "1_modification"
+        }
+      ],
+      "editor/context": [
+        {
+          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
+          "command": "dart-librarian.exportIn",
+          "group": "1_modification"
+        },
+        {
+          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
+          "command": "dart-librarian.removeExport",
+          "group": "1_modification"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.97.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "eslint": "^8.57.0",
+    "typescript": "^5.3.3",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
