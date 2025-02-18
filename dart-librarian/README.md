@@ -1,71 +1,50 @@
-# dart-librarian README
+# dart-librarian
 
-This is the README for your extension "dart-librarian". After writing up a brief description, we recommend including the following sections.
+**dart-librarian** is a VS Code extension that simplifies exporting files in `library` files.
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### Export
 
-For example if there is an image subfolder under your extension project workspace:
+- Focus a file in the explorer / editor that you want to export;
+- Run the `Export` command (by executing it through the command palette or the assigned keybinding);
+- Select the library file you want to export the files to;
+- Done ✅
 
-\!\[feature X\]\(images/feature-x.png\)
+### Remove Export
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Focus a file in the explorer / editor that is exported from a library;
+- Run the `Remove Export` command (by executing it through the command palette or the assigned keybinding);
+- Done ✅
 
-## Requirements
+## Limitations
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+Right now, the extension only considers files in the `lib` directory. For example, if you have the following structure:
 
-## Extension Settings
+```
+lib/
+  src/
+    extensions/
+      extension_a.dart
+      extension_b.dart
+    util/
+      util_a.dart
+      util_b.dart
+  utilities.dart
+```
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+After executing the `Export` command on the file `util/util_a.dart`, the extension will suggest exporting to the `utilities.dart` file, or to create a new file for export immediately.
 
-For example:
+## Contributing
 
-This extension contributes the following settings:
+Pull Requests / Ideas are welcome. If you have any idea, please create an issue with the idea / proposal.
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+If you'd like to contribute to resolve an existing issue, please:
 
-## Known Issues
+- Fork the repository;
+- Create a branch for your changes;
+- Submit a pull request with a clear description of your updates.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## License
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+This project is licensed under the Apache License 2.0. See the [LICENSE](LICENSE) file for details.

@@ -2,12 +2,31 @@
   "name": "dart-librarian",
   "displayName": "dart-librarian",
   "description": "Export dart files to libraries at ease!",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "publisher": "nivisi",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nivisi/dart-librarian"
+  },
+  "author": {
+    "name": "Nikita Sirovskiy"
+  },
+  "homepage": "https://github.com/nivisi/dart-librarian",
+  "bugs": {
+    "url": "https://github.com/nivisi/dart-librarian/issues"
+  },
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": "^1.67.0"
   },
   "categories": [
-    "Other"
+    "Programming Languages"
+  ],
+  "keywords": [
+    "dart",
+    "flutter",
+    "library",
+    "package export",
+    "export"
   ],
   "activationEvents": [
     "onLanguage:dart"
@@ -16,8 +35,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "dart-librarian.exportIn",
-        "title": "Export in...",
+        "command": "dart-librarian.export",
+        "title": "Export to Library",
         "category": "Dart Librarian"
       },
       {
@@ -30,7 +49,7 @@
       "editor/title": [
         {
           "when": "resourceExtname == .dart && resourcePath =~ /lib/",
-          "command": "dart-librarian.exportIn",
+          "command": "dart-librarian.export",
           "group": "navigation"
         },
         {
@@ -42,25 +61,25 @@
       "explorer/context": [
         {
           "when": "resourceExtname == .dart && resourcePath =~ /lib/",
-          "command": "dart-librarian.exportIn",
-          "group": "1_modification"
+          "command": "dart-librarian.export",
+          "group": "1_dart_librarian"
         },
         {
           "when": "resourceExtname == .dart && resourcePath =~ /lib/",
           "command": "dart-librarian.removeExport",
-          "group": "1_modification"
+          "group": "1_dart_librarian"
         }
       ],
       "editor/context": [
         {
           "when": "resourceExtname == .dart && resourcePath =~ /lib/",
-          "command": "dart-librarian.exportIn",
-          "group": "1_modification"
+          "command": "dart-librarian.export",
+          "group": "1_dart_librarian"
         },
         {
           "when": "resourceExtname == .dart && resourcePath =~ /lib/",
           "command": "dart-librarian.removeExport",
-          "group": "1_modification"
+          "group": "1_dart_librarian"
         }
       ]
     }

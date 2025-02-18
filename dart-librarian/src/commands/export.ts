@@ -13,9 +13,9 @@ interface ExportQuickPickItem extends vscode.QuickPickItem {
     isCreateNew?: boolean;
 }
 
-// Register the export-in command.
-export async function registerExportInCommand(context: vscode.ExtensionContext) {
-    const disposable = vscode.commands.registerCommand('dart-librarian.exportIn', async (uri?: vscode.Uri) => {
+// Register the export command.
+export async function registerExportCommand(context: vscode.ExtensionContext) {
+    const disposable = vscode.commands.registerCommand('dart-librarian.export', async (uri?: vscode.Uri) => {
         // Use the provided URI if available; otherwise, use the active editor.
         if (!uri) {
             const activeEditor = vscode.window.activeTextEditor;
