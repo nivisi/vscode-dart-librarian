@@ -1,13 +1,8 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import { ExportFile } from './interfaces/exportFile';
+import { findExportFiles } from './utils/dartFileUtils';
 import { findLibDirectory, isInLibFolder, } from './utils/fileUtils';
-
-// Represents a library/export file
-interface ExportFile {
-    fsPath: string;
-    relativePath: string;
-    hasLibrary: boolean;
-}
 
 // Register the remove-export command.
 export async function registerRemoveExportCommand(context: vscode.ExtensionContext) {
@@ -87,24 +82,6 @@ export async function registerRemoveExportCommand(context: vscode.ExtensionConte
 function getExportStatement(libraryFile: ExportFile, targetUri: vscode.Uri): string {
     const relativePath = path.relative(path.dirname(libraryFile.fsPath), targetUri.fsPath).replace(/\\/g, '/');
     return `export '${relativePath}';`;
-}
-
-// NOTE: Removed local implementations of isInLibFolder, findLibDirectorySync, findLibDirectory—they are now imported.
-
-// Finds all Dart export files directly inside the lib folder.
-async function findExportFiles(libDir: vscode.Uri): Promise<ExportFile[]> {
-    const result: ExportFile[] = [];
-    const files = await vscode.workspace.findFiles(new vscode.RelativePattern(libDir, '**/*.dart'));
-    for (const file of files) {
-        const content = (await vscode.workspace.fs.readFile(file)).toString();
-        const hasLibrary = /^library\s+/m.test(content);
-        result.push({
-            fsPath: file.fsPath,
-            relativePath: path.relative(libDir.fsPath, file.fsPath),
-            hasLibrary
-        });
-    }
-    return result;
 }
 
 // Removes the export statement from the library file.

@@ -1,18 +1,9 @@
 import * as path from 'path';
 import * as vscode from 'vscode';
+import { ExportFile } from './interfaces/exportFile';
+import { ExportQuickPickItem } from './interfaces/exportQuickPickItem';
+import { findExportFiles } from './utils/dartFileUtils';
 import { findLibDirectory, isInLibFolder } from './utils/fileUtils';
-
-interface ExportFile {
-    fsPath: string;
-    relativePath: string;
-    hasLibrary: boolean;
-}
-
-interface ExportQuickPickItem extends vscode.QuickPickItem {
-    file?: ExportFile;
-    isCreateNew?: boolean;
-}
-
 // Register the export command.
 export async function registerExportCommand(context: vscode.ExtensionContext) {
     const disposable = vscode.commands.registerCommand('dart-librarian.export', async (uri?: vscode.Uri) => {
@@ -97,28 +88,6 @@ export async function registerExportCommand(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(disposable);
-}
-
-// NOTE: Removed local implementations of isInLibFolder, findLibDirectorySync, findLibDirectory—they now come from the utils import.
-
-// Finds all Dart export files directly inside the lib folder.
-async function findExportFiles(libDir: vscode.Uri): Promise<ExportFile[]> {
-    const result: ExportFile[] = [];
-    const files = await vscode.workspace.findFiles(new vscode.RelativePattern(libDir, '*.dart'));
-    for (const file of files) {
-        // Exclude files with a leading underscore (private files)
-        if (path.basename(file.fsPath).startsWith('_')) {
-            continue;
-        }
-        const content = (await vscode.workspace.fs.readFile(file)).toString();
-        const hasLibrary = /^library\s+/m.test(content);
-        result.push({
-            fsPath: file.fsPath,
-            relativePath: path.relative(libDir.fsPath, file.fsPath),
-            hasLibrary
-        });
-    }
-    return result;
 }
 
 // Updated: Creates a new Dart export file using asynchronous file operations.
