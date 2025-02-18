@@ -37,7 +37,8 @@
       {
         "command": "dart-librarian.export",
         "title": "Export to Library",
-        "category": "Dart Librarian"
+        "category": "Dart Librarian",
+        "icon": "$(file-symlink-file)"
       },
       {
         "command": "dart-librarian.removeExport",
@@ -50,11 +51,6 @@
         {
           "when": "resourceExtname == .dart && resourcePath =~ /lib/",
           "command": "dart-librarian.export",
-          "group": "navigation"
-        },
-        {
-          "when": "resourceExtname == .dart && resourcePath =~ /lib/",
-          "command": "dart-librarian.removeExport",
           "group": "navigation"
         }
       ],
