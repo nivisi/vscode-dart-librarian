@@ -1,6 +1,6 @@
 {
   "name": "dart-librarian",
-  "displayName": "dart-librarian",
+  "displayName": "Dart Librarian",
   "description": "Export dart files to libraries at ease!",
   "version": "1.0.0",
   "publisher": "nivisi",
@@ -26,7 +26,8 @@
     "flutter",
     "library",
     "package export",
-    "export"
+    "export",
+    "dart library export"
   ],
   "activationEvents": [
     "onLanguage:dart"
